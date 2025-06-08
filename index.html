@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para Ángeles 💌</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ffd1dc;
+      font-family: 'Segoe UI', sans-serif;
+      overflow-y: auto;
+    }
+
+    .container {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .letter {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      max-width: 600px;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      transform: translateY(20px);
+    }
+
+    .show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 25px;
+      background-color: #ff5e8e;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #ff3c72;
+    }
+
+    .hearts {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 8s infinite ease-in;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>💖 Para Ángeles 💖</h1>
+    <button onclick="mostrarCarta()">Abrir Carta</button>
+    <div class="letter" id="carta">
+      <img src="foto.jpg" alt="Foto juntos" style="width:100%; border-radius: 10px; margin-bottom: 20px;" />
+      <p>Hoy es el cumpleaños de una persona muy especial, de alguien que ha marcado mi vida de una manera profunda e inolvidable. Mi princesa❤, en este día quiero agradecerle al destino por haberte cruzado en mi camino. A lo largo de nuestra historia hemos vivido momentos hermosos, risas sinceras, abrazos que curan el alma, pero también pruebas difíciles que nos han retado y fortalecido.</p>
+      <p>No somos perfectos, y eso está bien. Porque el amor verdadero no se trata de no tener diferencias, sino de saber enfrentarlas juntos, con respeto, cariño y voluntad de seguir creciendo. Tú has sido mi apoyo, mi refugio, mi compañera en los días buenos y en los más duros. A veces no encuentro las palabras para expresarte cuánto te valoro, cuánto te admiro por tu fortaleza, tu sensibilidad y todo lo que eres.</p>
+      <p>Hoy quiero que sepas que, a pesar de los altibajos, sigo eligiéndote con el corazón en la mano. Sigo creyendo en lo que somos, en lo que hemos construido y en todo lo que podemos llegar a ser. Me siento orgulloso de ti, de todo lo que haces, de todo lo que sueñas, y de cómo enfrentas la vida.</p>
+      <p>Te mereces un cumpleaños lleno de amor, sonrisas sinceras y momentos que se queden en tu memoria para siempre. Yo voy a estar aquí para celebrarte, no solo hoy, sino cada día. Porque amarte es una de las decisiones más bonitas que he tomado.</p>
+      <p>Feliz cumpleaños, mi niña. Gracias por existir, por ser tú, y por hacerme sentir tan afortunado de tenerte. Te amo con todo mi ser🥺❤🥰</p>
+      <p><strong>– Bryan</strong></p>
+    </div>
+  </div>
+
+  <!-- Música de fondo -->
+  <audio id="bg-music" loop>
+    <source src="1.mp3" type="audio/mpeg" />
+    Tu navegador no soporta audio.
+  </audio>
+
+  <!-- Corazones flotando -->
+  <div class="hearts" id="hearts"></div>
+
+  <script>
+    function mostrarCarta() {
+      document.getElementById('carta').classList.add('show');
+      const audio = document.getElementById('bg-music');
+      audio.play().catch(error => {
+        console.log("El navegador bloqueó la reproducción automática.");
+      });
+    }
+
+    function crearCorazones() {
+      const heartsContainer = document.getElementById('hearts');
+      for (let i = 0; i < 25; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDuration = 5 + Math.random() * 5 + 's';
+        heartsContainer.appendChild(heart);
+      }
+    }
+
+    crearCorazones();
+  </script>
+</body>
+</html>
